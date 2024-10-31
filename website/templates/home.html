@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+<!-- Kullanıcı notlarını listelemek için aşağıdaki döngü kullanılıyor.-->
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}<!-- Notun içeriğini sayfada gösterir-->
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+    <!--POST methoduyla yeni bir not girişini sağlamak için sunucuya veri göndermelisin.-->
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+{% endblock %}
